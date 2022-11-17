@@ -26,13 +26,15 @@
     // Accept: "*"
     // }
 // }
-
 // console.log(Response.body)
 // console.log(Response.headers)
 // console.log(Response.status)
 // console.log(Response.json)
 
-// OTHER METHOD
+
+
+// Other Method
+// Open the HTML in browser and check console, I think we are close? maybe... 
 async function postData(url = 'http://gateway.marvel.com/docs', data = {}) {
     const response = await fetch(url, {
       method: 'GET',
