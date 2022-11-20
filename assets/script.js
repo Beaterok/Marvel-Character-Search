@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Object.defineProperty(document, "referrer", {get : function(){ return "wrxguy2012"; }});
 
 // marvel API
@@ -55,3 +56,5 @@ fetch("https://gateway.marvel.com:/v1/public/characters?&name=A&orderBy=name&lim
   .then(function (data) {
   console.log(data);
   })
+=======
+>>>>>>> 1ef8e24e96cda61bf1f2a5e933620cc47e5d5e19
