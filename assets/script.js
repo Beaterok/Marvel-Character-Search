@@ -81,6 +81,7 @@ console.log(myhash);
 
 // my 1,0494,484,0494,572th attemp to call the Marvel api function [thats a joke haha :p  ]
 
+
 fetch("https://gateway.marvel.com:/v1/public/characters?&name=A&orderBy=name&limit=50&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp + "")
     .then(function (response) {
         return response.json();
@@ -134,4 +135,20 @@ searchBtn.addEventListener("click", function (event) {
 
 // create a function to display character bio onto browser
 
-//
+//Gif function
+var getGif = function(name){
+var Character = name + " Marvel";
+var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q="+Character+"&limit=5&offset=0&rating=g&lang=en"
+var imgElem = document.getElementById("img")
+fetch(gifURL).then(function (response) {
+  return response.json();
+})
+.then(function (response) {
+	//console.log(response.data); 
+ imgElem.src= response.data[0].images.original.url;
+
+}).catch(function (error) {
+	console.error(error);
+});
+}
+
