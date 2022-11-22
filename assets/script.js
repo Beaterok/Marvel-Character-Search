@@ -1,16 +1,4 @@
-<<<<<<< HEAD
 Object.defineProperty(document, "referrer", {get : function(){ return "wrxguy2012"; }});
-
-// marvel API
-
-// define terms
-var KEY = 'b54dd6a59e90a62162c8b014c6c598e8';
-var privatekey= 'baad4fa42abb871344cefe7a070a43eae292130d';
-var timestamp = new Date().getTime();
-
-// Check for correct timestamp format output
-console.log(timestamp);
-
 // import code for CryptoJS (can be added to seperate .js file later)
 
 /*
@@ -40,6 +28,17 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
+// marvel API
+
+// define terms
+var KEY = 'b54dd6a59e90a62162c8b014c6c598e8';
+var privatekey= 'baad4fa42abb871344cefe7a070a43eae292130d';
+var timestamp = new Date().getTime();
+
+// Check for correct timestamp format output
+console.log(timestamp);
+
+
 
 //  Use CryptoJS to create hash
 var myhash = CryptoJS.MD5(timestamp+privatekey+KEY).toString();
@@ -56,5 +55,3 @@ fetch("https://gateway.marvel.com:/v1/public/characters?&name=A&orderBy=name&lim
   .then(function (data) {
   console.log(data);
   })
-=======
->>>>>>> 1ef8e24e96cda61bf1f2a5e933620cc47e5d5e19
