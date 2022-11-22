@@ -5,27 +5,22 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
         <link rel="stylesheet" type="text/css" href="./assets/style.css" />
-        <title>Document</title>
+        <title>Marvel Character Search</title>
     </head>
 <body>
-    <header>Marvel Character Search</header>
-
-<aside>
+    <header class="is-size-1 py-5 has-text-centered is-family-monospace has-background-info">Marvel Character Search</header>
+<div class="bio">
     <form class="example" action="action_page.php">
-        <input>
-        <input type="button" id="searchBtn" value="Search"/>
+        <input id="search-input" style="height: 40px;font-size:17pt;">
+        <button class="button is-dark" id="search-button">Submit</button>
     </form>
-
-    <div class="bio">
-        <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
-        </canvas>
-    </div>
-</aside>
+</div>
 
     <main>
-        <div class="characterimg">
-            <img id="img"  >
+        <div class="character-img">
+            <img src="insert img here from assets" alt="marvel character">
         </div>
     </main>
     <script src="./assets/script.js"></script>
