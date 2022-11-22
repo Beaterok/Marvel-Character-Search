@@ -128,10 +128,5 @@ searchBtn.addEventListener("click", function (event) {
 
             }
 
-// create function for video directory 
-
-// create a function to display tweets onto HTML
 
 // create a function to display character bio onto browser
-
-//
