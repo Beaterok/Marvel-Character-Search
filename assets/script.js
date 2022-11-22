@@ -1,3 +1,4 @@
+
 Object.defineProperty(document, "referrer", {get : function(){ return "wrxguy2012"; }});
 
 // marvel API
