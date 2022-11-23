@@ -117,7 +117,7 @@ var marvelAPI = function (Character) {
 
 //Gif function
 var getGif = function (name) {
-  var Character = name + " Marvel";
+  var Character = name ;
   var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q=" + Character + "&limit=5&offset=0&rating=g&lang=en"
   var imgElem = document.getElementById("img")
   fetch(gifURL).then(function (response) {
