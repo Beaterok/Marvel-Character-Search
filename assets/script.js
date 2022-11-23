@@ -68,7 +68,7 @@ var privatekey = 'baad4fa42abb871344cefe7a070a43eae292130d';
 var timestamp = new Date().getTime();
 
 //  query select necessary variabels
-var searchBox = document.querySelector('.example').value;
+var formEl = document.getElementById('example');
 var searchBtn = document.getElementById('#searchBtn');
 
 // Check for correct timestamp format output
@@ -119,7 +119,6 @@ var marvelAPI = function (Character) {
 
 
 
-
 //Gif function
 var getGif = function (name) {
   var Character = name + " Marvel";
@@ -144,9 +143,11 @@ var getGif = function (name) {
 }
 
 //Button event
-searchBtn.addEventListener("click", function (event) {
+formEl.addEventListener("submit", function(event) {
   event.preventDefault();
+  var userInput = document.querySelector('#search-input').value;
+  console.log(userInput);
   //var Character = ;
-  marvelAPI(Character);
-  getGif(Character);
+  marvelAPI(userInput.trim());
+  getGif(userInput);
 });
