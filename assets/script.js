@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Object.defineProperty(document, "referrer", {get : function(){ return "wrxguy2012"; }});
-=======
-Object.defineProperty(document, "referrer", { get: function () { return "wrxguy2012"; } });
->>>>>>> a1c65a404e1eca6c0e8f804446c2649ad6213fdb
 // import code for CryptoJS (can be added to seperate .js file later)
 
 /*
@@ -88,7 +84,7 @@ var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 
 
 var marvelAPI = function (Character) {
-  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&name=" + Character + "&orderBy=name&limit=50&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
+  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&nameStartsWith=" + Character + "&orderBy=name&limit=50&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
   fetch(requestURL)
     .then(function (response) {
       return response.json();
@@ -126,19 +122,16 @@ var getGif = function (name) {
   var imgElem = document.getElementById("img")
   fetch(gifURL).then(function (response) {
     return response.json();
-<<<<<<< HEAD
 })
   .then(function (data) {
   console.log(data);
-  })
-=======
   })
     .then(function (response) {
       //console.log(response.data); 
       imgElem.src = response.data[0].images.original.url;
 
     }).catch(function (error) {
-      console.error(error);
+      console.log(error);
     });
 }
 
