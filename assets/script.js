@@ -119,6 +119,7 @@ var marvelAPI = function (Character) {
 
 
 
+
 //Gif function
 var getGif = function (name) {
   var Character = name + " Marvel";
@@ -149,4 +150,3 @@ searchBtn.addEventListener("click", function (event) {
   marvelAPI(Character);
   getGif(Character);
 });
->>>>>>> a1c65a404e1eca6c0e8f804446c2649ad6213fdb
