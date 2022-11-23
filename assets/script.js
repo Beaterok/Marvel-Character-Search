@@ -140,4 +140,4 @@ formEl.addEventListener("submit", function(event) {
   //var Character = ;
   marvelAPI(userInput.trim());
   getGif(userInput);
-});
+});//push change
