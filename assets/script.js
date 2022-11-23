@@ -115,6 +115,7 @@ var marvelAPI = function (Character) {
 
 
 
+
 //Gif function
 var getGif = function (name) {
   var Character = name + " Marvel";
