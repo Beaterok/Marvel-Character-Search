@@ -64,7 +64,7 @@ var privatekey = 'baad4fa42abb871344cefe7a070a43eae292130d';
 var timestamp = new Date().getTime();
 
 //  query select necessary variabels
-var formEl = document.getElementById('example');
+var formEl = document.getElementById('form-element');
 var searchBtn = document.getElementById('#searchBtn');
 
 // Check for correct timestamp format output
