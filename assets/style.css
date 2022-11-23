@@ -23,3 +23,13 @@
     margin: 40px;
 }
 
+.character-img {
+    background-color: rgb(252, 247, 247);
+    width: 600px;
+    height: 100vh;
+    border: 5px solid rgb(0, 0, 0);
+    padding: 40px;
+    margin: 40px;
+    display: flex;
+    align-items: flex-end;
+}
