@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-        <link rel="stylesheet" type="text/css" href="./assets/style.css" />
-        <title>Marvel Character Search</title>
-    </head>
-<body>
-    <header class="is-size-1 py-5 has-text-centered is-family-monospace has-background-info">Marvel Character Search</header>
-<div class="bio">
-    <form id="example">
-        <input id="search-input" style="height: 40px;font-size:17pt;">
-        <button class="button is-dark" id="search-button">Submit</button>
-    </form>
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+    <title>Marvel Character Search</title>
+  </head>
+  <body>
+    <header
+      class="is-size-1 py-5 has-text-centered is-family-monospace has-background-info">
+      Marvel Character Search
+    </header>
+    <div class="container">
+      <div class="flex-child-1"></div>
+        <form id="example">
+          <input id="search-input" style="height: 40px; font-size: 17pt" />
+          <button class="button is-dark" id="search-button">Submit</button>
+        </form>
+        <div class="character-img"></div>
+        <div class="flex-child-3"></div>
+    </div>
+        
+        
+    
     <main>
-        <div class="character-img">
-            <img alt="marvel character">
-            
-        </div>
-        <div class="character-gif">
-            <img id= "img" alt="Gify">
-        </div>
+      <div class="character-gif column">
+        <img id="img" alt="Gify" />
+      </div>
     </main>
     <script src="./assets/script.js"></script>
-</body>
+  </body>
 
-<footer>
+  <footer>
     <p>Copyright © Infringement will be subjected to change.</p>
-</footer>
+  </footer>
+</html>
