@@ -18,8 +18,8 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(252, 247, 247);
-    width: 50vw;
-    height: 50vh;
+    width: 100vw;
+    height: 100vh;
     border: 5px solid rgb(0, 0, 0);
     padding: 40px;
     margin: 40px;
@@ -32,21 +32,25 @@ img{
 
 .character-img {
     background-color: rgb(252, 247, 247);
-    width: 50vw;
-    height: 45vh;
+    width: 40vw;
+    height: 40vh;
     border: 5px solid rgb(0, 0, 0);
     padding: 40px;
-    margin: 40px;
+    margin: 20px;
     /* display: flex;
     flex-direction: row; */
+    margin-left: auto;
 }
 
 .flex-child-3 {
     background-color: rgb(252, 247, 247);
-    width: 50vw;
-    height: 45vh;
+    width: 40vw;
+    height: 40vh;
     border: 5px solid rgb(0, 0, 0);
     padding: 40px;
-    margin: 40px;
-    /* margin-left: auto; */
+    margin: 20px;
+    /* display: flex;
+    flex-direction: row;
+    align-items: flex-end; */
+    margin-left: auto;
 }
