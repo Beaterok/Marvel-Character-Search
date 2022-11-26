@@ -14,16 +14,43 @@
     font-size: 16x;
 }
 
-.bio {
+.container {
+    display: flex;
+    flex-direction: column;
     background-color: rgb(252, 247, 247);
-    width: 600px;
+    width: 100vw;
     height: 100vh;
     border: 5px solid rgb(0, 0, 0);
     padding: 40px;
     margin: 40px;
 }
+
 img{
     height: 400px;
     width: 400px;
 }
 
+.character-img {
+    background-color: rgb(252, 247, 247);
+    width: 40vw;
+    height: 40vh;
+    border: 5px solid rgb(0, 0, 0);
+    padding: 40px;
+    margin: 20px;
+    /* display: flex;
+    flex-direction: row; */
+    margin-left: auto;
+}
+
+.flex-child-3 {
+    background-color: rgb(252, 247, 247);
+    width: 40vw;
+    height: 40vh;
+    border: 5px solid rgb(0, 0, 0);
+    padding: 40px;
+    margin: 20px;
+    /* display: flex;
+    flex-direction: row;
+    align-items: flex-end; */
+    margin-left: auto;
+}
