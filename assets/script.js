@@ -64,7 +64,7 @@ var privatekey = 'baad4fa42abb871344cefe7a070a43eae292130d';
 var timestamp = new Date().getTime();
 
 //  query select necessary variabels
-var formEl = document.getElementById('example');
+var formEl = document.getElementById('form-element');
 var searchBtn = document.getElementById('#searchBtn');
 
 // Check for correct timestamp format output
@@ -84,31 +84,18 @@ var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 
 
 var marvelAPI = function (Character) {
-  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&name=" + Character + "&orderBy=name&limit=50&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
+  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&name=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
   fetch(requestURL)
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
-      console.log(data)
-
+    .then(function (res) {
+      console.log(res)
+      var dataTable = document.getElementById("marvelBio")
+      dataTable.textContent= res.data.results[0].description;
 // create a function to display character bio onto browser
-
-      for (var i = 0; i < data.length; i++) {
-        var createColumn = document.createElement('col');
-        var dataTable = document.createElement('dt');
-        var link = document.createElement('a');
-
-        link.textContent = data[i].html_url;
-        link.href = data[i].html_url;
-
-        createColumn.appendChild(dataTable);
-        dataTable.appendChild(link);
-        searchBox.appendChild(createColumn);
-      }
-
-
-    });
+    })
+    
 }
 
 
