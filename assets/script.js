@@ -64,8 +64,8 @@ var privatekey = 'baad4fa42abb871344cefe7a070a43eae292130d';
 var timestamp = new Date().getTime();
 
 //  query select necessary variabels
-var formEl = document.getElementById('example');
-var searchBtn = document.getElementById('#searchBtn');
+var formEl = document.getElementById('search-button');
+// var searchBtn = document.getElementById('#search-button');
 
 // Check for correct timestamp format output
 //console.log(timestamp);
@@ -84,33 +84,21 @@ var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 
 
 var marvelAPI = function (Character) {
-  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&nameStartsWith=" + Character + "&orderBy=name&limit=50&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
+  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&nameStartsWith=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
+  var imgElem = document.getElementById("marvelImg");
   fetch(requestURL)
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
-      console.log(data)
-
-// create a function to display character bio onto browser
-
-      for (var i = 0; i < data.length; i++) {
-        var createColumn = document.createElement('col');
-        var dataTable = document.createElement('dt');
-        var link = document.createElement('a');
-
-        link.textContent = data[i].html_url;
-        link.href = data[i].html_url;
-
-        createColumn.appendChild(dataTable);
-        dataTable.appendChild(link);
-        searchBox.appendChild(createColumn);
-      }
-
-
-    });
+    .then(function (res) {
+      console.log(res)
+      var dataTable = document.getElementById("marvelBio");
+      var imgElem = document.getElementById("marvelImg");
+      dataTable.textContent= res.data.results[0].description;
+      var imgPath = res.data.results[0].thumbnail.path;
+      imgElem.src = "" + imgPath + ".jpg";
+    })
 }
-
 
 
 
@@ -120,23 +108,21 @@ var getGif = function (name) {
   var Character = name ;
   var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q=" + Character + "&limit=5&offset=0&rating=g&lang=en"
   var imgElem = document.getElementById("img")
-  fetch(gifURL).then(function (response) {
-    return response.json();
-})
-  .then(function (data) {
-  console.log(data);
-  })
+  fetch(gifURL)
+    .then(function (response) {
+      return response.json();
+    })
     .then(function (response) {
       //console.log(response.data); 
       imgElem.src = response.data[0].images.original.url;
-
-    }).catch(function (error) {
+    })
+    .catch(function (error) {
       console.log(error);
     });
 }
 
 //Button event
-formEl.addEventListener("submit", function(event) {
+formEl.addEventListener("click", function(event) {
   event.preventDefault();
   var userInput = document.querySelector('#search-input').value;
   console.log(userInput);
