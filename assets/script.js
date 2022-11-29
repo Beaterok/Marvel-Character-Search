@@ -65,31 +65,32 @@ var timestamp = new Date().getTime();
 
 //  query select necessary variabels
 var formEl = document.getElementById('example');
-var searchBtn = document.getElementById('#searchBtn');
+var searchBtn = document.getElementById('search-input');
 
 // Check for correct timestamp format output
 //console.log(timestamp);
-
 // Create variable for local storage
-var searchHistory = JSON.parse(localStorage.getItem("search-history")) || [];
 
+var searchHistory = JSON.parse(localStorage.getItem("search-history")) || [];
+var recentSearches = document.querySelector(".History");
 
 //  Use CryptoJS to create hash
+
 
 var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 
 // Check output of myhash for correct format
 //console.log(myhash);
-
-renderSearchHistory();
-
-
-renderSearchHistory();
-
 // Function to store search history.
+
+initSearchHistory();
 function setStorage(history) {
-  searchStorage.push(history);
-  localStorage.setItem("history", JSON.stringify(searchStorage));
+  if(searchHistory.includes(history)){
+    return;
+  }
+  searchHistory.push(history);
+  localStorage.setItem("history", JSON.stringify(searchHistory));
+
 }
 // Function to get search history from local storage.
 function initSearchHistory() {
@@ -99,19 +100,21 @@ function initSearchHistory() {
   }
   renderSearchHistory();
 }
-// Function to display the search history list.
 function renderSearchHistory() {
   recentSearches.innerHTML = "";
 
-  for (let i = 0; i < searchStorage.length; i++) {
+  for (let i = 0; i < searchHistory.length; i++) {
     var button = document.createElement("button");
-    button.textContent = searchStorage[i];
+    button.textContent = searchHistory[i];
+    button.addEventListener('click', getMyCharacter) 
     recentSearches.append(button);
-    recentSearches.addEventListener('click', function(event){
-    var cityText = event.target.innerHTML
-    geoCode(cityText);
-    })
-}}
+    }
+  }
+
+
+
+
+// Function to display the search history list.
 
 
 
@@ -128,31 +131,31 @@ var marvelAPI = function (Character) {
       var dataTable = document.getElementById("marvelBio");
       var imgElem = document.getElementById("marvelImg");
       var copyright = document.getElementById("copyright");
-      dataTable.textContent= res.data.results[0].description;
+      dataTable.textContent = res.data.results[0].description;
       var imgPath = res.data.results[0].thumbnail.path;
       imgElem.src = "" + imgPath + ".jpg";
       copyright.textContent = res.copyright;
       var style = getComputedStyle(document.body)
-       var BgImage= document.getElementById("BG")
-       BgImage.setAttribute("style","background-image:url("+"" + imgPath + ".jpg);")
+      var BgImage = document.getElementById("BG")
+      BgImage.setAttribute("style", "background-image:url(" + "" + imgPath + ".jpg);")
     })
     .catch(function (error) {
       var dataTable = document.getElementById("marvelBio");
       dataTable.textContext = "Sorry, no info found!";
       console.log(error);
-    
-// create a function to display character bio onto browser
+
+      // create a function to display character bio onto browser
     });
-  }
+}
 
 
 
 //Gif function
 var getGif = function (name) {
-  var Character = name + " Marvel";
+  var Character = name;
   var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q=" + Character + "&limit=5&offset=0&rating=g&lang=en"
   var imgElem = document.getElementById("img")
-  
+
   fetch(gifURL)
     .then(function (response) {
       return response.json();
@@ -167,12 +170,22 @@ var getGif = function (name) {
     });
 }
 
+
+var getMyCharacter = function(event){
+  console.log("Cliked")
+  var userInput = event.target.innerHTML;
+  marvelAPI(userInput.trim());
+  getGif(userInput);
+  console.log(userInput);
+}
 //Button event
-formEl.addEventListener("submit", function(event) {
+formEl.addEventListener("submit", function (event) {
   event.preventDefault();
   var userInput = document.querySelector('#search-input').value;
   console.log(userInput);
-  //var Character = ;
   marvelAPI(userInput.trim());
   getGif(userInput);
+  setStorage(userInput);
 });
+
+recentSearches.addEventListener('click', getMyCharacter) 
