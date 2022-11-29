@@ -80,12 +80,11 @@ var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 //console.log(myhash);
 
 
-
+// !!!!!!!!we still need an if statment (or something) so an error comes up if no info for character!!!!!!
 
 
 var marvelAPI = function (Character) {
   var requestURL = "https://gateway.marvel.com:/v1/public/characters?&nameStartsWith=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
-  var imgElem = document.getElementById("marvelImg");
   fetch(requestURL)
     .then(function (response) {
       return response.json();
@@ -94,10 +93,17 @@ var marvelAPI = function (Character) {
       console.log(res)
       var dataTable = document.getElementById("marvelBio");
       var imgElem = document.getElementById("marvelImg");
+      var copyright = document.getElementById("copyright");
       dataTable.textContent= res.data.results[0].description;
       var imgPath = res.data.results[0].thumbnail.path;
       imgElem.src = "" + imgPath + ".jpg";
+      copyright.textContent = res.copyright;
     })
+    .catch(function (error) {
+      var dataTable = document.getElementById("marvelBio");
+      dataTable.textcontext = "Sorry, no info found!";
+      console.log(error);
+    });
 }
 
 
