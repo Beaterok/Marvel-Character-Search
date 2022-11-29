@@ -1,4 +1,4 @@
-Object.defineProperty(document, "referrer", { get: function () { return "wrxguy2012"; } });
+Object.defineProperty(document, "referrer", {get : function(){ return "wrxguy2012"; }});
 // import code for CryptoJS (can be added to seperate .js file later)
 
 /*
@@ -66,22 +66,8 @@ var timestamp = new Date().getTime();
 //  query select necessary variabels
 var formEl = document.getElementById('example');
 var searchBtn = document.getElementById('search-input');
-
-// Check for correct timestamp format output
-//console.log(timestamp);
-// Create variable for local storage
-
 var searchHistory = JSON.parse(localStorage.getItem("search-history")) || [];
 var recentSearches = document.querySelector(".History");
-
-//  Use CryptoJS to create hash
-
-
-var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
-
-// Check output of myhash for correct format
-//console.log(myhash);
-// Function to store search history.
 
 initSearchHistory();
 function setStorage(history) {
@@ -114,14 +100,24 @@ function renderSearchHistory() {
 
 
 
-// Function to display the search history list.
+// Check for correct timestamp format output
+//console.log(timestamp);
 
 
 
+//  Use CryptoJS to create hash
+
+var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
+
+// Check output of myhash for correct format
+//console.log(myhash);
+
+
+// !!!!!!!!we still need an if statment (or something) so an error comes up if no info for character!!!!!!
 
 
 var marvelAPI = function (Character) {
-  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&name=" + Character + "&orderBy=name&limit=50&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
+  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&nameStartsWith=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
   fetch(requestURL)
     .then(function (response) {
       return response.json();
@@ -131,7 +127,7 @@ var marvelAPI = function (Character) {
       var dataTable = document.getElementById("marvelBio");
       var imgElem = document.getElementById("marvelImg");
       var copyright = document.getElementById("copyright");
-      dataTable.textContent = res.data.results[0].description;
+      dataTable.textContent= res.data.results[0].description;
       var imgPath = res.data.results[0].thumbnail.path;
       imgElem.src = "" + imgPath + ".jpg";
       copyright.textContent = res.copyright;
@@ -141,21 +137,21 @@ var marvelAPI = function (Character) {
     })
     .catch(function (error) {
       var dataTable = document.getElementById("marvelBio");
-      dataTable.textContext = "Sorry, no info found!";
+      dataTable.textContent = ("Sorry, no info found!");
       console.log(error);
-
-      // create a function to display character bio onto browser
     });
 }
 
+var change = function changeColor() {
+  document.getElementsById(marvelBio).style.blur="8px"
+}
 
 
 //Gif function
 var getGif = function (name) {
-  var Character = name;
+  var Character = name ;
   var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q=" + Character + "&limit=5&offset=0&rating=g&lang=en"
   var imgElem = document.getElementById("img")
-
   fetch(gifURL)
     .then(function (response) {
       return response.json();
@@ -163,13 +159,11 @@ var getGif = function (name) {
     .then(function (response) {
       //console.log(response.data); 
       imgElem.src = response.data[0].images.original.url;
-      console.log(response.data[0].images.original.url);
     })
     .catch(function (error) {
       console.log(error);
     });
 }
-
 
 var getMyCharacter = function(event){
   console.log("Cliked")
@@ -177,15 +171,19 @@ var getMyCharacter = function(event){
   marvelAPI(userInput.trim());
   getGif(userInput);
   console.log(userInput);
+  document.getElementById("before").innerHTML = userInput;
 }
+
 //Button event
-formEl.addEventListener("submit", function (event) {
+formEl.addEventListener("click", function(event) {
   event.preventDefault();
   var userInput = document.querySelector('#search-input').value;
   console.log(userInput);
+  document.getElementById("before").innerHTML = userInput;
   marvelAPI(userInput.trim());
   getGif(userInput);
   setStorage(userInput);
-});
+});//push change
+
 
 recentSearches.addEventListener('click', getMyCharacter) 

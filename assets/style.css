@@ -17,7 +17,7 @@
 }
 
 .grid-item-1 {
-    background-color: rgb(252, 247, 247);
+    background-color: rgba(252, 247, 247, .4);
     border: 3px solid rgb(0, 0, 0);
     grid-row: span 2;
     text-align: center;
@@ -28,12 +28,52 @@
     background-color: rgb(252, 247, 247);
     border: 3px solid rgb(0, 0, 0);
     grid-column: span 1;
-    text-align: center;
+    margin: 0px;
+    padding: 0px;
 }
 
 .grid-item-3 {
     background-color: rgb(252, 247, 247);
     border: 3px solid rgb(0, 0, 0);
     grid-row: span 1;
-    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+#before {
+    content: "Character Bio!";
+    color: rgba(0, 0, 0, 1);
+    font-weight: bolder;
+    font-size: 5rem;
+    text-decoration-line: underline;
+    
+}
+
+#marvelBio {
+    color: rgba(0, 0, 0, 1);
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+#copyright {
+    font-size: .9rem;
+    color: rgba( 0, 0, 0, .8);
+}
+
+#img {
+    width: 100%;
+    height: auto;
+}
+
+#marvelImg {
+    width: 100%;
+    height: auto; 
+}
+#BG {
+    width: 100%;
+    height: auto;
+}
+.Button { 
+    background-color: rgb(50, 45, 49);
+    color: rgb(252, 247, 247);
 }
