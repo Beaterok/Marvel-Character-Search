@@ -1,4 +1,4 @@
-Object.defineProperty(document, "referrer", { get: function () { return "wrxguy2012"; } });
+Object.defineProperty(document, "referrer", {get : function(){ return "wrxguy2012"; }});
 // import code for CryptoJS (can be added to seperate .js file later)
 
 /*
@@ -64,6 +64,10 @@ var privatekey = 'baad4fa42abb871344cefe7a070a43eae292130d';
 var timestamp = new Date().getTime();
 
 //  query select necessary variabels
+
+var formEl = document.getElementById('search-button');
+// var searchBtn = document.getElementById('#search-button');
+
 var formEl = document.getElementById('form-element');
 var searchBtn = document.getElementById('#searchBtn');
 
@@ -80,24 +84,41 @@ var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 //console.log(myhash);
 
 
-
+// !!!!!!!!we still need an if statment (or something) so an error comes up if no info for character!!!!!!
 
 
 var marvelAPI = function (Character) {
+
+  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&nameStartsWith=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
+
   var requestURL = "https://gateway.marvel.com:/v1/public/characters?&name=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
+
   fetch(requestURL)
     .then(function (response) {
       return response.json();
     })
     .then(function (res) {
       console.log(res)
+
+      var dataTable = document.getElementById("marvelBio");
+      var imgElem = document.getElementById("marvelImg");
+      var copyright = document.getElementById("copyright");
+      dataTable.textContent= res.data.results[0].description;
+      var imgPath = res.data.results[0].thumbnail.path;
+      imgElem.src = "" + imgPath + ".jpg";
+      copyright.textContent = res.copyright;
+    })
+    .catch(function (error) {
+      var dataTable = document.getElementById("marvelBio");
+      dataTable.textcontext = "Sorry, no info found!";
+      console.log(error);
+    });
+
       var dataTable = document.getElementById("marvelBio")
       dataTable.textContent= res.data.results[0].description;
 // create a function to display character bio onto browser
     })
-    
 }
-
 
 
 
@@ -107,20 +128,21 @@ var getGif = function (name) {
   var Character = name ;
   var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q=" + Character + "&limit=5&offset=0&rating=g&lang=en"
   var imgElem = document.getElementById("img")
-  fetch(gifURL).then(function (response) {
-    return response.json();
-  })
+  fetch(gifURL)
+    .then(function (response) {
+      return response.json();
+    })
     .then(function (response) {
       //console.log(response.data); 
       imgElem.src = response.data[0].images.original.url;
-
-    }).catch(function (error) {
-      console.error(error);
+    })
+    .catch(function (error) {
+      console.log(error);
     });
 }
 
 //Button event
-formEl.addEventListener("submit", function(event) {
+formEl.addEventListener("click", function(event) {
   event.preventDefault();
   var userInput = document.querySelector('#search-input').value;
   console.log(userInput);
