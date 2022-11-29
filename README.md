@@ -9,6 +9,8 @@ Search engine to pull up characters from marvel universe and show a GIF of that 
 - Search for a biography of your favorite Marvel characters
 - Find the most popular GIF related to Marvels greatest heros and villains
 
+![alt text](assets/media/screenshot.gif)
+
 ## <u>**Motivation**</u>
 Here is a list of my motivations for this project!
 
