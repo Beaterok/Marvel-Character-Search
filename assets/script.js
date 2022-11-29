@@ -81,6 +81,7 @@ var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 // Check output of myhash for correct format
 //console.log(myhash);
 
+renderSearchHistory();
 
 
 renderSearchHistory();
@@ -122,29 +123,27 @@ var marvelAPI = function (Character) {
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
-      console.log(data)
-
+    .then(function (res) {
+      console.log(res)
+      var dataTable = document.getElementById("marvelBio");
+      var imgElem = document.getElementById("marvelImg");
+      var copyright = document.getElementById("copyright");
+      dataTable.textContent= res.data.results[0].description;
+      var imgPath = res.data.results[0].thumbnail.path;
+      imgElem.src = "" + imgPath + ".jpg";
+      copyright.textContent = res.copyright;
+      var style = getComputedStyle(document.body)
+       var BgImage= document.getElementById("BG")
+       BgImage.setAttribute("style","background-image:url("+"" + imgPath + ".jpg);")
+    })
+    .catch(function (error) {
+      var dataTable = document.getElementById("marvelBio");
+      dataTable.textContext = "Sorry, no info found!";
+      console.log(error);
+    
 // create a function to display character bio onto browser
-
-      for (var i = 0; i < data.length; i++) {
-        var createColumn = document.createElement('col');
-        var dataTable = document.createElement('dt');
-        var link = document.createElement('a');
-
-        link.textContent = data[i].html_url;
-        link.href = data[i].html_url;
-
-        createColumn.appendChild(dataTable);
-        dataTable.appendChild(link);
-        searchBox.appendChild(createColumn);
-      }
-
-
     });
-}
-
-
+  }
 
 
 
@@ -153,15 +152,18 @@ var getGif = function (name) {
   var Character = name + " Marvel";
   var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q=" + Character + "&limit=5&offset=0&rating=g&lang=en"
   var imgElem = document.getElementById("img")
-  fetch(gifURL).then(function (response) {
-    return response.json();
-  })
+  
+  fetch(gifURL)
+    .then(function (response) {
+      return response.json();
+    })
     .then(function (response) {
       //console.log(response.data); 
       imgElem.src = response.data[0].images.original.url;
-
-    }).catch(function (error) {
-      console.error(error);
+      console.log(response.data[0].images.original.url);
+    })
+    .catch(function (error) {
+      console.log(error);
     });
 }
 
