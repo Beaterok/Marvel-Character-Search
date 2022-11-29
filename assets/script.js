@@ -67,8 +67,6 @@ var timestamp = new Date().getTime();
 
 var formEl = document.getElementById('search-button');
 // var searchBtn = document.getElementById('#search-button');
-
-var formEl = document.getElementById('form-element');
 var searchBtn = document.getElementById('#searchBtn');
 
 // Check for correct timestamp format output
@@ -84,11 +82,7 @@ var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 //console.log(myhash);
 
 
-// !!!!!!!!we still need an if statment (or something) so an error comes up if no info for character!!!!!!
-
-
 var marvelAPI = function (Character) {
-
   var requestURL = "https://gateway.marvel.com:/v1/public/characters?&nameStartsWith=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
 
   var requestURL = "https://gateway.marvel.com:/v1/public/characters?&name=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
@@ -99,7 +93,6 @@ var marvelAPI = function (Character) {
     })
     .then(function (res) {
       console.log(res)
-
       var dataTable = document.getElementById("marvelBio");
       var imgElem = document.getElementById("marvelImg");
       var copyright = document.getElementById("copyright");
@@ -107,18 +100,18 @@ var marvelAPI = function (Character) {
       var imgPath = res.data.results[0].thumbnail.path;
       imgElem.src = "" + imgPath + ".jpg";
       copyright.textContent = res.copyright;
+      var style = getComputedStyle(document.body)
+       var BgImage= document.getElementById("BG")
+       BgImage.setAttribute("style","background-image:url("+"" + imgPath + ".jpg);")
     })
     .catch(function (error) {
       var dataTable = document.getElementById("marvelBio");
-      dataTable.textcontext = "Sorry, no info found!";
+      dataTable.textContext = "Sorry, no info found!";
       console.log(error);
-    });
-
-      var dataTable = document.getElementById("marvelBio")
-      dataTable.textContent= res.data.results[0].description;
+    
 // create a function to display character bio onto browser
-    })
-}
+    });
+  }
 
 
 
@@ -128,6 +121,7 @@ var getGif = function (name) {
   var Character = name ;
   var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q=" + Character + "&limit=5&offset=0&rating=g&lang=en"
   var imgElem = document.getElementById("img")
+  
   fetch(gifURL)
     .then(function (response) {
       return response.json();
@@ -135,6 +129,7 @@ var getGif = function (name) {
     .then(function (response) {
       //console.log(response.data); 
       imgElem.src = response.data[0].images.original.url;
+      console.log(response.data[0].images.original.url);
     })
     .catch(function (error) {
       console.log(error);
