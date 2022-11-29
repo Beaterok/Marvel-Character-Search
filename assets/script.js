@@ -1,4 +1,4 @@
-Object.defineProperty(document, "referrer", {get : function(){ return "wrxguy2012"; }});
+Object.defineProperty(document, "referrer", { get: function () { return "wrxguy2012"; } });
 // import code for CryptoJS (can be added to seperate .js file later)
 
 /*
@@ -64,14 +64,14 @@ var privatekey = 'baad4fa42abb871344cefe7a070a43eae292130d';
 var timestamp = new Date().getTime();
 
 //  query select necessary variabels
-
-var formEl = document.getElementById('search-button');
-// var searchBtn = document.getElementById('#search-button');
+var formEl = document.getElementById('example');
 var searchBtn = document.getElementById('#searchBtn');
 
 // Check for correct timestamp format output
 //console.log(timestamp);
 
+// Create variable for local storage
+var searchHistory = JSON.parse(localStorage.getItem("search-history")) || [];
 
 
 //  Use CryptoJS to create hash
@@ -81,12 +81,44 @@ var myhash = CryptoJS.MD5(timestamp + privatekey + KEY).toString();
 // Check output of myhash for correct format
 //console.log(myhash);
 
+renderSearchHistory();
+
+
+renderSearchHistory();
+
+// Function to store search history.
+function setStorage(history) {
+  searchStorage.push(history);
+  localStorage.setItem("history", JSON.stringify(searchStorage));
+}
+// Function to get search history from local storage.
+function initSearchHistory() {
+  var storedHistory = localStorage.getItem("history");
+  if (storedHistory) {
+    searchHistory = JSON.parse(storedHistory);
+  }
+  renderSearchHistory();
+}
+// Function to display the search history list.
+function renderSearchHistory() {
+  recentSearches.innerHTML = "";
+
+  for (let i = 0; i < searchStorage.length; i++) {
+    var button = document.createElement("button");
+    button.textContent = searchStorage[i];
+    recentSearches.append(button);
+    recentSearches.addEventListener('click', function(event){
+    var cityText = event.target.innerHTML
+    geoCode(cityText);
+    })
+}}
+
+
+
+
 
 var marvelAPI = function (Character) {
-  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&nameStartsWith=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
-
-  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&name=" + Character + "&orderBy=name&limit=5&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
-
+  var requestURL = "https://gateway.marvel.com:/v1/public/characters?&name=" + Character + "&orderBy=name&limit=50&apikey=" + KEY + "&hash=" + myhash + "&ts=" + timestamp;
   fetch(requestURL)
     .then(function (response) {
       return response.json();
@@ -115,10 +147,9 @@ var marvelAPI = function (Character) {
 
 
 
-
 //Gif function
 var getGif = function (name) {
-  var Character = name ;
+  var Character = name + " Marvel";
   var gifURL = "https://api.giphy.com/v1/gifs/search?api_key=ZD1GMMDZvYzdG6GS0PgGV8oYQfQvRLai&q=" + Character + "&limit=5&offset=0&rating=g&lang=en"
   var imgElem = document.getElementById("img")
   
@@ -137,11 +168,11 @@ var getGif = function (name) {
 }
 
 //Button event
-formEl.addEventListener("click", function(event) {
+formEl.addEventListener("submit", function(event) {
   event.preventDefault();
   var userInput = document.querySelector('#search-input').value;
   console.log(userInput);
   //var Character = ;
   marvelAPI(userInput.trim());
   getGif(userInput);
-});//push change
+});
