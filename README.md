@@ -2,12 +2,14 @@
 Search engine to pull up characters from marvel universe and show a GIF of that character and character description
 
 ## Deployed Webpage
-[Click me to go to see our project!](?)
+[Click me to go to see our project!](https://beaterok.github.io/Marvel-Character-Search/)
 
 ## <u>**Usage**</u>
 
 - Search for a biography of your favorite Marvel characters
 - Find the most popular GIF related to Marvels greatest heros and villains
+
+![alt text](assets/media/screenshot.gif)
 
 ## <u>**Motivation**</u>
 Here is a list of my motivations for this project!
