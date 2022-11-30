@@ -19,10 +19,6 @@ Here is a list of my motivations for this project!
 - utilizing the members within our group to trouble shoot any development issues we came across
 - lastly, create a fun page that any Marvel fan can use to learn more about their favorite character 
 
-## <u>**Screenshots**</u>
-
-![alt text](insert screenshot of finished page)
-
 ## <u>**Developing Team**</u>
 
 Tyler Walton [GitHub](https://github.com/tylerwalton)<br/>
