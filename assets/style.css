@@ -13,10 +13,11 @@ header {
     color: white;
 }
 
-.button {
+button {
     display: inline-block;
+    background-color: transparent;
     padding: 0.5em 3em;
-    border: 0.16em solid #FFFFFF;
+    border: 0.3em solid #ffffff;
     margin: 0 0.3em 0.3em 0;
     box-sizing: border-box;
     text-decoration: none;
@@ -38,12 +39,6 @@ button:active {
     border-color: #BBBBBB;
 }
 
-@media all and (max-width:30em) {
-    button {
-        display: block;
-        margin: 0.4em auto;
-    }
-}
 
 .grid-contain {
     display: grid;
@@ -113,7 +108,10 @@ button:active {
     width: 100%;
     height: auto;
 }
-.Button { 
-    background-color: rgb(50, 45, 49);
-    color: rgb(252, 247, 247);
+
+@media all and (max-width:30em) {
+    button {
+        display: block;
+        margin: 0.4em auto;
+    }
 }
