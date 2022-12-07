@@ -4,6 +4,46 @@
     box-sizing: border-box;
     background-size: cover;
 }
+ body {
+    background-image: linear-gradient(red, rgb(0, 0, 0));
+}
+
+header {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.692), red);
+    color: white;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.5em 3em;
+    border: 0.16em solid #FFFFFF;
+    margin: 0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.15s;
+}
+
+button:hover {
+    color: #DDDDDD;
+    border-color: #DDDDDD;
+}
+
+button:active {
+    color: #BBBBBB;
+    border-color: #BBBBBB;
+}
+
+@media all and (max-width:30em) {
+    button {
+        display: block;
+        margin: 0.4em auto;
+    }
+}
 
 .grid-contain {
     display: grid;
