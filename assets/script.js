@@ -138,6 +138,7 @@ var marvelAPI = function (Character) {
     .catch(function (error) {
       var dataTable = document.getElementById("marvelBio");
       dataTable.textContent = ("Sorry, no info found!");
+      searchHistory.removeItem(Character);
       console.log(error);
     });
 }
@@ -175,7 +176,7 @@ var getMyCharacter = function(event){
 }
 
 //Button event
-formEl.addEventListener("click", function(event) {
+formEl.addEventListener("submit", function(event) {
   event.preventDefault();
   var userInput = document.querySelector('#search-input').value;
   console.log(userInput);
@@ -183,6 +184,7 @@ formEl.addEventListener("click", function(event) {
   marvelAPI(userInput.trim());
   getGif(userInput);
   setStorage(userInput);
+  renderSearchHistory();
 });//push change
 
 
